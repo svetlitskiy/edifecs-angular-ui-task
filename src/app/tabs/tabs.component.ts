@@ -7,30 +7,16 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./tabs.component.css']
 })
 export class TabsComponent implements OnInit {
-  tabs = [{
-    title: 'Tab1',
-    active: true,
-    text: 'Some text1'
-  }, {
-    title: 'Tab2',
-    text: 'Some text2'
-  }, {
-    title: 'Tab3',
-    disabled: true,
-    text: 'Some text3'
-  }];
+  tabs = [];
   activeTab = 0;
 
-  constructor(private cookieService: CookieService) {
-
+  constructor(
+    private cookieService: CookieService) {
   }
 
-  @Input() tabs: any;
-
-  //@Input()
-  /*set tabs(tabs: Object) {
-    this._tabs = tabs;
-  }*/
+  @Input() set ngModel(ngModel: Array<object>) {
+    this.tabs = ngModel;
+  }
 
   ngOnInit() {
     const activeTabIndex = JSON.parse(this.cookieService.get('activeTab'));
@@ -39,7 +25,7 @@ export class TabsComponent implements OnInit {
   }
 
   setTab(tab) {
-    const activeTab = this.tabs.indexOf(tab).toString();
+    const activeTab = this.tabs.indexOf(tab);
     this.cookieService.set( 'activeTab', JSON.stringify(activeTab));
     this.activeTab = activeTab;
   }
