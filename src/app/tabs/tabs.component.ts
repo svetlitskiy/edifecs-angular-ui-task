@@ -19,7 +19,7 @@ export class TabsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const activeTabIndex = JSON.parse(this.cookieService.get('activeTab'));
+    const activeTabIndex = JSON.parse(this.cookieService.get('activeTab') || '0');
     this.activeTab = activeTabIndex;
   }
 
