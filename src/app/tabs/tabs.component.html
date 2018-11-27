@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+  <li *ngFor="let tab of tabs; let i = index" class="nav-item" (click)="!tab.disabled && setTab(tab)">
+    <a class="nav-link" [ngClass]="{active: i == activeTab, disabled: tab.disabled}" href="#">{{ tab.title }}</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">{{ tabs[activeTab].text }}</div>
+</div>
+
+
